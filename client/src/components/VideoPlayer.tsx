@@ -1,9 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import videojs, { VideoJsPlayer, VideoJsPlayerOptions } from 'video.js'
 
-
-export let VideoPlayer: React.FC<VideoJsPlayerOptions>
-VideoPlayer = (props) => {
+export const VideoPlayer: React.FC<VideoJsPlayerOptions> = (props) => {
   const [player, setPlayer] = useState<VideoJsPlayer>()
   const videoNode = useRef(null)
 
