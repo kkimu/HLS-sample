@@ -1,6 +1,7 @@
 import React from 'react'
 import { VideoPlayer } from './components/VideoPlayer'
 import { VideoJsPlayerOptions } from 'video.js'
+import { AudioPlayer } from './components/AudioPlayer'
 
 const videoJsOptions: VideoJsPlayerOptions = {
   autoplay: false,
@@ -20,7 +21,8 @@ const App: React.FC = () => {
   return (
     <div>
       <h2>HLS Sample</h2>
-      <VideoPlayer {...videoJsOptions} />
+      {/*<VideoPlayer {...videoJsOptions} />*/}
+      <AudioPlayer />
     </div>
   )
 }
