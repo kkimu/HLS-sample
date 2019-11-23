@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import videojs, { VideoJsPlayer,  } from 'video.js'
+import './AudioPlayer.css'
 
 export const AudioPlayer: React.FC = () => {
   const audioNode = useRef(null)
@@ -8,10 +9,10 @@ export const AudioPlayer: React.FC = () => {
   }, [])
 
   return (
-    <div data-vjs-player>
+    <div>
       <audio
         ref={audioNode}
-        className="video-js vjs-default-skin vjs-audio"
+        // className="video-js vjs-default-skin"
         controls
         preload="auto"
       >
