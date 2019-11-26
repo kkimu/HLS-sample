@@ -1,20 +1,42 @@
-import React, { useEffect, useRef, useState } from 'react'
-import videojs, { VideoJsPlayer,  } from 'video.js'
-import './AudioPlayer.css'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
+import videojs, { VideoJsPlayer, VideoJsPlayerOptions } from 'video.js'
 
 export const AudioPlayer: React.FC = () => {
-  const audioNode = useRef(null)
+  const audioNode = useRef<HTMLAudioElement | null>(null)
+  const [player, setPlayer] = useState<VideoJsPlayer>()
+
   useEffect(() => {
-    videojs(audioNode.current)
+    if (!audioNode) return
+    const options: VideoJsPlayerOptions = {
+      autoplay: false,
+    }
+    setPlayer(videojs(audioNode.current, options))
   }, [])
+
+  // useEffect(() => {
+  //   if (!player) return
+  //   player.autoplay(true)
+  // }, [player])
+
+  const handleClick = useCallback(() => {
+    if (player) {
+      window.setTimeout(() => {
+        console.log('a')
+        player.bufferedEnd()
+        player.play()
+      }, 3000)
+    }
+  }, [player])
 
   return (
     <div>
+      <button onClick={handleClick}>button</button>
       <audio
         ref={audioNode}
-        // className="video-js vjs-default-skin"
+        style={{ display: 'none' }}
         controls
-        preload="auto"
+        // preload="auto"
+        // autoPlay
       >
         <source
           src="http://localhost:8080/index.m3u8"
